@@ -29,6 +29,7 @@ entry:
   ilimit_0_3 = (&base[(int) 2])->value_.i;
   goto forloop_7_1;
 
+/* The loop conditional.  *************************************************/
 forloop_7_1:
   iidx_0_4 = iidx_0_4 + (long long) 1;
   if (iidx_0_4 > ilimit_0_3)
@@ -36,10 +37,19 @@ forloop_7_1:
   else
     goto FORLOOP_I1_updatei_0_6;
 
+/* The loop body.  ********************************************************/
+FORLOOP_I1_updatei_0_6:
+  base = L->ci->u.l.base;
+  (&base[(int) 4])->value_.i = iidx_0_4;
+  (&base[(int) 4])->tt_ = (int) 19; /* was ->value_.tt_ */
+  goto forbody_6_2;
+
 forbody_6_2:
   base = L->ci->u.l.base;
   *&base[(int) 0] = *&base[(int) 4];
   goto forloop_7_1;
+
+/* After the loop.  *******************************************************/
 
 FORLOOP_I1_exit_0_5:
   base = L->ci->u.l.base;
@@ -48,12 +58,6 @@ FORLOOP_I1_exit_0_5:
     goto OP_RETURN_if_sizep_gt_0_7_7;
   else
     goto OP_RETURN_else_sizep_gt_0_7_8;
-
-FORLOOP_I1_updatei_0_6:
-  base = L->ci->u.l.base;
-  (&base[(int) 4])->value_.i = iidx_0_4;
-  (&base[(int) 4])->tt_ = (int) 19; /* was ->value_.tt_ */
-  goto forbody_6_2;
 
 OP_RETURN_if_sizep_gt_0_7_7:
   (void) luaF_close (L, base);
