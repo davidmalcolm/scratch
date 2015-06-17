@@ -13,11 +13,12 @@ ravif1 (struct ravi_lua_State *L)
   long long ilimit_0_3;
   long long iidx_0_4;
 
-#define REG_0 (base[(int) 0])
-#define REG_1 (base[(int) 1])
-#define REG_2 (base[(int) 2])
-#define REG_3 (base[(int) 3])
-#define REG_4 (base[(int) 4])
+  struct ravi_TValue REG_0;
+  struct ravi_TValue REG_1;
+  struct ravi_TValue REG_2;
+  struct ravi_TValue REG_3;
+  struct ravi_TValue REG_4;
+  /* FIXME: copy these up to base[n] once we're done.  */
 
 entry:
   cl = (struct ravi_LClosure *) L->ci->func->value_.gc;
