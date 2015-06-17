@@ -18,11 +18,32 @@ ravif1 (struct ravi_lua_State *L)
   struct ravi_TValue REG_2;
   struct ravi_TValue REG_3;
   struct ravi_TValue REG_4;
-  /* FIXME: copy these up to base[n] once we're done.  */
+#if 1
+#define COPY_FROM_BASE() \
+  do {                     \
+    REG_0 = base[(int) 0]; \
+    REG_1 = base[(int) 1]; \
+    REG_2 = base[(int) 2]; \
+    REG_3 = base[(int) 3]; \
+    REG_4 = base[(int) 4]; \
+  } while (0)
+#define COPY_TO_BASE() \
+  do {                     \
+    base[(int) 0] = REG_0; \
+    base[(int) 1] = REG_1; \
+    base[(int) 2] = REG_2; \
+    base[(int) 3] = REG_3; \
+    base[(int) 4] = REG_4; \
+  } while (0)
+#else
+#define COPY_FROM_BASE()
+#define COPY_TO_BASE()
+#endif
 
 entry:
   cl = (struct ravi_LClosure *) L->ci->func->value_.gc;
   base = L->ci->u.l.base;
+  COPY_FROM_BASE ();
   base = L->ci->u.l.base;
   REG_0 = cl->p->k[(int) 0];
   base = L->ci->u.l.base;
@@ -67,11 +88,15 @@ FORLOOP_I1_exit_0_5:
     goto OP_RETURN_else_sizep_gt_0_7_8;
 
 OP_RETURN_if_sizep_gt_0_7_7:
+  COPY_TO_BASE ();
   (void) luaF_close (L, base);
+  COPY_FROM_BASE ();
   goto OP_RETURN_else_sizep_gt_0_7_8;
 
 OP_RETURN_else_sizep_gt_0_7_8:
+  COPY_TO_BASE ();
   (void) luaD_poscall (L, &base[(int) 0]);
+  COPY_FROM_BASE ();
   return (int) 1;
 
 OP_RETURN_8_9:
@@ -83,10 +108,14 @@ OP_RETURN_8_9:
     goto OP_RETURN_else_sizep_gt_0_8_11;
 
 OP_RETURN_if_sizep_gt_0_8_10:
+  COPY_TO_BASE ();
   (void) luaF_close (L, base);
+  COPY_FROM_BASE ();
   goto OP_RETURN_else_sizep_gt_0_8_11;
 
 OP_RETURN_else_sizep_gt_0_8_11:
+  COPY_TO_BASE ();
   (void) luaD_poscall (L, &base[(int) 0]);
+  COPY_FROM_BASE ();
   return (int) 1;
 }
