@@ -13,20 +13,26 @@ ravif1 (struct ravi_lua_State *L)
   long long ilimit_0_3;
   long long iidx_0_4;
 
+#define REG_0 (base[(int) 0])
+#define REG_1 (base[(int) 1])
+#define REG_2 (base[(int) 2])
+#define REG_3 (base[(int) 3])
+#define REG_4 (base[(int) 4])
+
 entry:
   cl = (struct ravi_LClosure *) L->ci->func->value_.gc;
   base = L->ci->u.l.base;
   base = L->ci->u.l.base;
-  *&base[(int) 0] = *&cl->p->k[(int) 0];
+  REG_0 = cl->p->k[(int) 0];
   base = L->ci->u.l.base;
-  *&base[(int) 1] = *&cl->p->k[(int) 1];
+  REG_1 = cl->p->k[(int) 1];
   base = L->ci->u.l.base;
-  *&base[(int) 2] = *&cl->p->k[(int) 2];
+  REG_2 = cl->p->k[(int) 2];
   base = L->ci->u.l.base;
-  *&base[(int) 3] = *&cl->p->k[(int) 3];
+  REG_3 = cl->p->k[(int) 3];
   base = L->ci->u.l.base;
-  iidx_0_4 = (&base[(int) 1])->value_.i - (long long) 1;
-  ilimit_0_3 = (&base[(int) 2])->value_.i;
+  iidx_0_4 = REG_1.value_.i - (long long) 1;
+  ilimit_0_3 = REG_2.value_.i;
   goto forloop_7_1;
 
 /* The loop conditional.  *************************************************/
@@ -40,13 +46,13 @@ forloop_7_1:
 /* The loop body.  ********************************************************/
 FORLOOP_I1_updatei_0_6:
   base = L->ci->u.l.base;
-  (&base[(int) 4])->value_.i = iidx_0_4;
-  (&base[(int) 4])->tt_ = (int) 19; /* was ->value_.tt_ */
+  REG_4.value_.i = iidx_0_4;
+  REG_4.tt_ = (int) 19; /* was ->value_.tt_ */
   goto forbody_6_2;
 
 forbody_6_2:
   base = L->ci->u.l.base;
-  *&base[(int) 0] = *&base[(int) 4];
+  REG_0 = REG_4;
   goto forloop_7_1;
 
 /* After the loop.  *******************************************************/
